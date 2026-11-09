@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://packages.confluent.io/maven/' }
+}
+
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(17) }
+}
+
+dependencies {
+    implementation 'org.apache.kafka:kafka-clients:3.8.1'
+    implementation 'io.confluent:kafka-avro-serializer:7.7.1'
+    implementation 'org.apache.avro:avro:1.11.4'
+    implementation 'org.slf4j:slf4j-simple:2.0.16'
+}
+
+def appArgs = project.hasProperty('args') ? project.property('args').toString().split(' ') : []
+
+tasks.register('runProducer', JavaExec) {
+    group = 'application'
+    description = 'Sends one Avro message. Usage: ./gradlew runProducer -Pargs=v1|v2'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.example.avro.AvroProducer'
+    args appArgs
+}
+
+tasks.register('runConsumer', JavaExec) {
+    group = 'application'
+    description = 'Consumes Avro messages. Usage: ./gradlew runConsumer [-Pargs=writer|v1|v2]'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.example.avro.AvroConsumer'
+    standardInput = System.in
+    args appArgs
+}

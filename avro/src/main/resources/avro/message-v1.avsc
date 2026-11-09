@@ -1,0 +1,11 @@
+{
+  "type": "record",
+  "name": "Message",
+  "namespace": "com.example.avro",
+  "doc": "Version 1 of the demo message",
+  "fields": [
+    { "name": "id",        "type": "string" },
+    { "name": "text",      "type": "string" },
+    { "name": "timestamp", "type": "long" }
+  ]
+}
