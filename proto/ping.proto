@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package ping;
+
+option java_package = "com.example.grpc.ping";
+option java_multiple_files = true;
+
+service PingService {
+  rpc Ping (PingRequest) returns (PingResponse);
+}
+
+message PingRequest {
+  string message = 1;  // e.g. "Ping"
+  string client = 2;   // who is calling, e.g. "java" or "python"
+}
+
+message PingResponse {
+  string message = 1;  // e.g. "Pong"
+  int64 timestamp = 2; // server time in epoch millis
+  string server = 3;   // server identifier
+}

@@ -1,0 +1,5 @@
+java/build/
+java/.gradle/
+python-client/.venv/
+python-client/ping_pb2*.py
+__pycache__/
