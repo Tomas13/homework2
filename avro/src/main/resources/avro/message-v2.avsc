@@ -1,0 +1,13 @@
+{
+  "type": "record",
+  "name": "Message",
+  "namespace": "com.example.avro",
+  "doc": "Version 2 of the demo message: adds sender and priority (with defaults, so it is backward compatible)",
+  "fields": [
+    { "name": "id",        "type": "string" },
+    { "name": "text",      "type": "string" },
+    { "name": "timestamp", "type": "long" },
+    { "name": "sender",    "type": "string", "default": "unknown" },
+    { "name": "priority",  "type": "int",    "default": 0 }
+  ]
+}
